@@ -7,6 +7,7 @@ import Edit from "../components/Edit";
 import UploadBook from "../components/UploadBook";
 import BookStatus from "../components/BookStatus";
 import Purchase from "../Purchase";
+import axiosInstance from "../../api/axiosInstance";
 
 function Profile() {
   const [currentTab, setCurrentTab] = useState(1);
@@ -41,7 +42,7 @@ function Profile() {
           src={
                     dp == ""
                       ? "https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png"
-                      : dp
+                      : dp.startsWith('https://lh3.googleusercontent.com/')?dp:`${axiosInstance.defaults.baseURL}/uploads/${dp}`
                   }
         />
       </div>

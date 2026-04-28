@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaBars, FaFacebook, FaInstagram, FaPowerOff, FaUser } from "react-icons/fa";
 import { FaGear, FaXTwitter } from "react-icons/fa6";
 import { Link, Links } from "react-router-dom";
-
+import axiosInstance from "../../api/axiosInstance"
 function Header() {
   const [toggle, setToggle] = useState(false);
   const [token, setToken] = useState("");
@@ -71,8 +71,7 @@ function Header() {
                   src={
                     dp == ""
                       ? "https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png"
-                      : dp
-                  }
+                      : dp.startsWith('https://lh3.googleusercontent.com/')?dp:`${axiosInstance.defaults.baseURL}/uploads/${dp}` }
                   alt="profile icon"
                 />
               </button>
