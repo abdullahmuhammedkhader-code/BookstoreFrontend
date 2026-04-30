@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 
 function UploadBook() {
+  const [bookDetails,setBookDetails] = useState({title:"",author:"",pages:"",imageURL:"",price:"",discountPrice:"",abstract:"",publisher:"",isbn:"",language:"",category:"",uploadImages:[]})
+  const [preview,setPreview] = useState("")
+
+  console.log(bookDetails);
+
+  const handleUploadBookImage = (e)=>{
+
+    const imageFile = e.target.file[0]
+    const uploadBookImageArray = bookDetails.uploadImages
+    uploadBookImageArray.push(imageFile)
+    setBookDetails({...bookDetails,uploadImages:uploadBookImageArray})
+    const url = URL.createObjectURL(imageFile)
+    setPreview(url)
+  }
+  
+
   return (
     <div className="p-10 my-20 mx-5 bg-gray-200">
       <h1 className="text-center font-bold text-3xl">Upload Book Details</h1>
@@ -10,6 +26,8 @@ function UploadBook() {
           <div className="mb-3">
             <input
               type="text"
+              value={bookDetails.title}
+              onChange={e=>setbookDetails({...bookDetails,title:e.target.value})}
               placeholder="Book Title"
               className="w-full border border-gray-300 rounded p-2 bg-white"
             />
@@ -17,6 +35,8 @@ function UploadBook() {
           <div className="mb-3">
             <input
               type="text"
+              value={bookDetails.author}
+              onChange={e=>setbookDetails({...bookDetails,author:e.target.value})}
               placeholder="Author"
               className="w-full border border-gray-300 rounded p-2 bg-white"
             />
@@ -24,6 +44,8 @@ function UploadBook() {
           <div className="mb-3">
             <input
               type="text"
+              value={bookDetails.imageURL}
+              onChange={e=>setbookDetails({...bookDetails,imageURL:e.target.value})}
               placeholder="Book Cover Image Url"
               className="w-full border border-gray-300 rounded p-2 bg-white"
             />
@@ -31,6 +53,8 @@ function UploadBook() {
           <div className="mb-3">
             <input
               type="text"
+              value={bookDetails.pages}
+              onChange={e=>setbookDetails({...bookDetails,pages:e.target.value})}
               placeholder="Total Pages"
               className="w-full border border-gray-300 rounded p-2 bg-white"
             />
@@ -38,6 +62,8 @@ function UploadBook() {
           <div className="mb-3">
             <input
               type="text"
+              value={bookDetails.price}
+              onChange={e=>setbookDetails({...bookDetails,price:e.target.value})}
               placeholder="Original Price"
               className="w-full border border-gray-300 rounded p-2 bg-white"
             />
@@ -45,13 +71,17 @@ function UploadBook() {
           <div className="mb-3">
             <input
               type="text"
+              value={bookDetails.discountPrice}
+              onChange={e=>setbookDetails({...bookDetails,discountPrice:e.target.value})}
               placeholder="Discount Price"
               className="w-full border border-gray-300 rounded p-2 bg-white"
             />
           </div>
           <div className="mb-3">
             <textarea
-              placeholder="Discount Price"
+              value={bookDetails.abstract}
+              onChange={e=>setbookDetails({...bookDetails,abstract:e.target.value})}
+              placeholder="Abstract"
               rows={"5"}
               className="w-full border border-gray-300 rounded p-2 bg-white"
             />
@@ -60,6 +90,8 @@ function UploadBook() {
         <div className="px-3">
           <div className="mb-3">
             <input
+            value={bookDetails.publisher}
+              onChange={e=>setbookDetails({...bookDetails,publisher:e.target.value})}
               type="text"
               placeholder="Publisher"
               className="w-full border border-gray-300 rounded p-2 bg-white"
@@ -68,6 +100,8 @@ function UploadBook() {
           <div className="mb-3">
             <input
               type="text"
+              value={bookDetails.language}
+              onChange={e=>setbookDetails({...bookDetails,language:e.target.value})}
               placeholder="Language"
               className="w-full border border-gray-300 rounded p-2 bg-white"
             />
@@ -75,6 +109,8 @@ function UploadBook() {
           <div className="mb-3">
             <input
               type="text"
+              value={bookDetails.isbn}
+              onChange={e=>setbookDetails({...bookDetails,isbn:e.target.value})}
               placeholder="ISBN"
               className="w-full border border-gray-300 rounded p-2 bg-white"
             />
@@ -82,6 +118,8 @@ function UploadBook() {
           <div className="mb-3">
             <input
               type="text"
+              value={bookDetails.category}
+              onChange={e=>setbookDetails({...bookDetails,category:e.target.value})}
               placeholder="Category"
               className="w-full border border-gray-300 rounded p-2 bg-white"
             />
